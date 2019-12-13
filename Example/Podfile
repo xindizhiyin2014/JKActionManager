@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'JKActionManager_Example' do
+  pod 'JKActionManager', :path => '../'
+
+  target 'JKActionManager_Tests' do
+    inherit! :search_paths
+
+    pod 'Kiwi'
+  end
+end
