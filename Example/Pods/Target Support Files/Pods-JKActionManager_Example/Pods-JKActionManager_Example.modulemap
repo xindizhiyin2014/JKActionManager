@@ -1,0 +1,6 @@
+framework module Pods_JKActionManager_Example {
+  umbrella header "Pods-JKActionManager_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

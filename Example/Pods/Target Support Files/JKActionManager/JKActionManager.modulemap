@@ -1,0 +1,6 @@
+framework module JKActionManager {
+  umbrella header "JKActionManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -19,9 +19,12 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		BD9F472723A3ADE600B5937F /* JKChainActionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9F472223A3ADE600B5937F /* JKChainActionSpec.m */; };
+		BD9F472823A3ADE600B5937F /* JKBatchActionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9F472423A3ADE600B5937F /* JKBatchActionSpec.m */; };
+		BD9F472923A3ADE600B5937F /* JKPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9F472523A3ADE600B5937F /* JKPerson.m */; };
+		BD9F472A23A3ADE600B5937F /* JKActionManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9F472623A3ADE600B5937F /* JKActionManagerSpec.m */; };
 		E5B39388DB73FBBFE1882872 /* Pods_JKActionManager_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA829014E75ADB12F23BC3F /* Pods_JKActionManager_Example.framework */; };
 		FE4975D072B6191B5A0E56F5 /* Pods_JKActionManager_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC26412904091AA96B7B04F2 /* Pods_JKActionManager_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -39,7 +42,7 @@
 /* Begin PBXFileReference section */
 		0457BFE2D56ECB902F783288 /* Pods-JKActionManager_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JKActionManager_Tests.release.xcconfig"; path = "Target Support Files/Pods-JKActionManager_Tests/Pods-JKActionManager_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		222260C4D005469A805250BA /* Pods-JKActionManager_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JKActionManager_Example.release.xcconfig"; path = "Target Support Files/Pods-JKActionManager_Example/Pods-JKActionManager_Example.release.xcconfig"; sourceTree = "<group>"; };
-		2B6941FC82BA869C2D977A9C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		2B6941FC82BA869C2D977A9C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* JKActionManager_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JKActionManager_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -57,15 +60,19 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		732D8AE9851F025A62DBC45A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		732D8AE9851F025A62DBC45A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		76AC434FBE3ED21CC89D2AB4 /* Pods-JKActionManager_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JKActionManager_Example.debug.xcconfig"; path = "Target Support Files/Pods-JKActionManager_Example/Pods-JKActionManager_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		7AA829014E75ADB12F23BC3F /* Pods_JKActionManager_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JKActionManager_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A53005E4B4DB3CBF04E5671C /* JKActionManager.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = JKActionManager.podspec; path = ../JKActionManager.podspec; sourceTree = "<group>"; };
+		A53005E4B4DB3CBF04E5671C /* JKActionManager.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JKActionManager.podspec; path = ../JKActionManager.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AC26412904091AA96B7B04F2 /* Pods_JKActionManager_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JKActionManager_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD9F472223A3ADE600B5937F /* JKChainActionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKChainActionSpec.m; sourceTree = "<group>"; };
+		BD9F472323A3ADE600B5937F /* JKPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKPerson.h; sourceTree = "<group>"; };
+		BD9F472423A3ADE600B5937F /* JKBatchActionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKBatchActionSpec.m; sourceTree = "<group>"; };
+		BD9F472523A3ADE600B5937F /* JKPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKPerson.m; sourceTree = "<group>"; };
+		BD9F472623A3ADE600B5937F /* JKActionManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKActionManagerSpec.m; sourceTree = "<group>"; };
 		E42E47F11E481F39FA47A1B7 /* Pods-JKActionManager_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JKActionManager_Tests.debug.xcconfig"; path = "Target Support Files/Pods-JKActionManager_Tests/Pods-JKActionManager_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,7 +166,6 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -168,6 +174,11 @@
 		6003F5B6195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BD9F472623A3ADE600B5937F /* JKActionManagerSpec.m */,
+				BD9F472423A3ADE600B5937F /* JKBatchActionSpec.m */,
+				BD9F472223A3ADE600B5937F /* JKChainActionSpec.m */,
+				BD9F472323A3ADE600B5937F /* JKPerson.h */,
+				BD9F472523A3ADE600B5937F /* JKPerson.m */,
 				6003F5B7195388D20070C39A /* Tests-Info.plist */,
 				6003F5B8195388D20070C39A /* InfoPlist.strings */,
 				606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */,
@@ -193,7 +204,6 @@
 				E42E47F11E481F39FA47A1B7 /* Pods-JKActionManager_Tests.debug.xcconfig */,
 				0457BFE2D56ECB902F783288 /* Pods-JKActionManager_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -259,6 +269,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -326,10 +337,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-JKActionManager_Example/Pods-JKActionManager_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JKActionManager/JKActionManager.framework",
+				"${BUILT_PRODUCTS_DIR}/JKDataHelper/JKDataHelper.framework",
+				"${BUILT_PRODUCTS_DIR}/JKKVOHelper/JKKVOHelper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JKActionManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JKDataHelper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JKKVOHelper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -393,7 +408,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				BD9F472823A3ADE600B5937F /* JKBatchActionSpec.m in Sources */,
+				BD9F472A23A3ADE600B5937F /* JKActionManagerSpec.m in Sources */,
+				BD9F472723A3ADE600B5937F /* JKChainActionSpec.m in Sources */,
+				BD9F472923A3ADE600B5937F /* JKPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

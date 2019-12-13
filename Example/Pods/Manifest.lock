@@ -1,0 +1,31 @@
+PODS:
+  - JKActionManager (0.1.0):
+    - JKDataHelper
+    - JKKVOHelper
+  - JKDataHelper (0.1.19)
+  - JKKVOHelper (0.1.10)
+  - Kiwi (3.0.0)
+
+DEPENDENCIES:
+  - JKActionManager (from `../`)
+  - Kiwi
+
+SPEC REPOS:
+  trunk:
+    - JKDataHelper
+    - JKKVOHelper
+    - Kiwi
+
+EXTERNAL SOURCES:
+  JKActionManager:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JKActionManager: 8d10a0923beb32cf888490cc9570bb779268a810
+  JKDataHelper: adaff6d418643255ccc81244848ef6acc3128ac8
+  JKKVOHelper: d5a052889879d8260cf1b4cd0b037af6781193a2
+  Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
+
+PODFILE CHECKSUM: b4dd8389a8d458055c3695a7409f0cac08542b4e
+
+COCOAPODS: 1.8.4
