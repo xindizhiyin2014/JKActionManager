@@ -1,8 +1,8 @@
 PODS:
-  - JKActionManager (0.1.0):
+  - JKActionManager (0.1.1):
     - JKDataHelper
     - JKKVOHelper
-  - JKDataHelper (0.1.19)
+  - JKDataHelper (0.1.20)
   - JKKVOHelper (0.1.10)
   - Kiwi (3.0.0)
 
@@ -21,8 +21,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  JKActionManager: 8d10a0923beb32cf888490cc9570bb779268a810
-  JKDataHelper: adaff6d418643255ccc81244848ef6acc3128ac8
+  JKActionManager: a04270376e203b6eff7eafd2ad6f2d26e00ea785
+  JKDataHelper: a96de18c1c681e8b881bdd7e71936f1ce9209996
   JKKVOHelper: d5a052889879d8260cf1b4cd0b037af6781193a2
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
 

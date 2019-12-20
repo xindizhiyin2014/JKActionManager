@@ -1,6 +1,6 @@
 {
   "name": "JKActionManager",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "this is an action manager.easily use in different threads",
   "description": "this is an action manager.easily use in different threads,it will update with the need",
   "homepage": "https://github.com/xindizhiyin2014/JKActionManager",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/xindizhiyin2014/JKActionManager.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "8.0"
