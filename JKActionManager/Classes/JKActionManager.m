@@ -103,6 +103,7 @@ static JKActionManager *_manager = nil;
                 };
             }
             [self addJKAction:singleAction data:data];
+            singleAction.status = JKActionStatusExecuting;
         } else if ([action isKindOfClass:[JKBatchAction class]]) {
             JKBatchAction *batchAction = (JKBatchAction *)action;
             if (batchAction.actions.count == 0) {
@@ -112,6 +113,7 @@ static JKActionManager *_manager = nil;
                 return;
             }
             [self addBatchAction:batchAction data:data];
+            batchAction.status = JKActionStatusExecuting;
         } else if ([action isKindOfClass:[JKChainAction class]]) {
             JKChainAction *chainAction = (JKChainAction *)action;
             if (chainAction.actions.count == 0) {
@@ -121,6 +123,7 @@ static JKActionManager *_manager = nil;
                 return;
             }
             [self addChainAction:chainAction data:data];
+            chainAction.status = JKActionStatusExecuting;
         } else {
     #if DEBUG
             NSAssert(NO, @"no support this kind of action");
@@ -143,16 +146,27 @@ static JKActionManager *_manager = nil;
     #endif
         return;
     }
+    action.status = JKActionStatusCancel;
 }
 
 + (void)removeAllActions
 {
     [[JKActionManager sharedManager].lock lock];
-    NSArray *actions = [[JKActionManager sharedManager].actions copy];
-    [[JKActionManager sharedManager].batchActions removeAllObjects];
-    [[JKActionManager sharedManager].chainActions removeAllObjects];
+    NSArray *batchActions = [[JKActionManager sharedManager].batchActions copy];
+    NSArray *chainActions = [[JKActionManager sharedManager].chainActions copy];
     [[JKActionManager sharedManager].lock unlock];
     
+    for (__kindof JKBatchAction *batchAction in batchActions) {
+        [self removeAction:batchAction];
+    }
+    
+    for (__kindof JKChainAction *chainAction in chainActions) {
+        [self removeAction:chainAction];
+    }
+    
+    [[JKActionManager sharedManager].lock lock];
+    NSArray *actions = [[JKActionManager sharedManager].actions copy];
+    [[JKActionManager sharedManager].lock unlock];
     for (__kindof JKSingleAction *action in actions) {
         [self removeAction:action];
     }
@@ -232,6 +246,7 @@ static JKActionManager *_manager = nil;
 
 + (void)removeJKAction:(JKSingleAction *)action
 {
+    [action cleanBlock];
     [[JKActionManager sharedManager].lock lock];
     NSString *key = [NSString stringWithFormat:@"%p",action];
     NSBlockOperation *operaion = [[JKActionManager sharedManager].operationDic objectForKey:key];
@@ -243,6 +258,7 @@ static JKActionManager *_manager = nil;
 
 + (void)removeBatchAction:(JKBatchAction *)batchAction
 {
+    [batchAction cleanBlock];
     [[JKActionManager sharedManager].lock lock];
     NSArray *actions = [batchAction.actions copy];
     [[JKActionManager sharedManager].batchActions removeObject:batchAction];
@@ -259,6 +275,7 @@ static JKActionManager *_manager = nil;
 
 + (void)removeChainAction:(JKChainAction *)chainAction
 {
+    [chainAction cleanBlock];
     [[JKActionManager sharedManager].lock lock];
     NSArray *actions = [chainAction.actions copy];
     [[JKActionManager sharedManager].chainActions removeObject:chainAction];
@@ -324,6 +341,7 @@ static JKActionManager *_manager = nil;
     if (batchAction.afterCompleteBlock) {
         batchAction.afterCompleteBlock(batchAction, faileAction);
     }
+    [self removeBatchAction:batchAction];
 }
 
 + (void)chainActionComplete:(__kindof JKChainAction *)chainAction
@@ -336,6 +354,7 @@ static JKActionManager *_manager = nil;
     if (chainAction.afterCompleteBlock) {
         chainAction.afterCompleteBlock(chainAction, nil);
     }
+    [self removeChainAction:chainAction];
 }
 
 + (NSUInteger)startActionInChainAction:(__kindof JKChainAction *)chainAction
