@@ -40,7 +40,7 @@
 @interface JKActionManager ()
 
 @property (nonatomic, strong) NSOperationQueue *queue;
-@property (nonatomic, strong) NSLock *lock;
+@property (nonatomic, strong) NSRecursiveLock *lock;
 @property (nonatomic, strong) NSMutableDictionary <NSString *,__kindof NSOperation *>*operationDic;
 @property (nonatomic, strong, readwrite) NSMutableArray <__kindof JKSingleAction *>*actions;
 @property (nonatomic, strong, readwrite) NSMutableArray <__kindof JKBatchAction *>*batchActions;
@@ -70,7 +70,7 @@ static JKActionManager *_manager = nil;
             count = 1;
         }
         _queue.maxConcurrentOperationCount = 3 * count;
-        _lock = [NSLock new];
+        _lock = [NSRecursiveLock new];
         _operationDic = [NSMutableDictionary new];
         _actions = [NSMutableArray new];
         _batchActions = [NSMutableArray new];
@@ -154,7 +154,6 @@ static JKActionManager *_manager = nil;
     [[JKActionManager sharedManager].lock lock];
     NSArray *batchActions = [[JKActionManager sharedManager].batchActions copy];
     NSArray *chainActions = [[JKActionManager sharedManager].chainActions copy];
-    [[JKActionManager sharedManager].lock unlock];
     
     for (__kindof JKBatchAction *batchAction in batchActions) {
         [self removeAction:batchAction];
@@ -164,12 +163,12 @@ static JKActionManager *_manager = nil;
         [self removeAction:chainAction];
     }
     
-    [[JKActionManager sharedManager].lock lock];
     NSArray *actions = [[JKActionManager sharedManager].actions copy];
-    [[JKActionManager sharedManager].lock unlock];
     for (__kindof JKSingleAction *action in actions) {
         [self removeAction:action];
     }
+    [[JKActionManager sharedManager].lock unlock];
+
 }
 
 + (void)addJKAction:(JKSingleAction *)action
@@ -262,7 +261,6 @@ static JKActionManager *_manager = nil;
     [[JKActionManager sharedManager].lock lock];
     NSArray *actions = [batchAction.actions copy];
     [[JKActionManager sharedManager].batchActions removeObject:batchAction];
-    [[JKActionManager sharedManager].lock unlock];
 
     for (__kindof JKBaseAction *action in actions) {
         if ([action isKindOfClass:[JKSingleAction class]]) {
@@ -271,6 +269,8 @@ static JKActionManager *_manager = nil;
             [self removeChainAction:action];
         }
     }
+    [[JKActionManager sharedManager].lock unlock];
+
 }
 
 + (void)removeChainAction:(JKChainAction *)chainAction
@@ -279,7 +279,6 @@ static JKActionManager *_manager = nil;
     [[JKActionManager sharedManager].lock lock];
     NSArray *actions = [chainAction.actions copy];
     [[JKActionManager sharedManager].chainActions removeObject:chainAction];
-    [[JKActionManager sharedManager].lock unlock];
     
     for (__kindof JKBaseAction *action in actions) {
         if ([action isKindOfClass:[JKSingleAction class]]) {
@@ -288,6 +287,7 @@ static JKActionManager *_manager = nil;
             [self removeBatchAction:action];
         }
     }
+    [[JKActionManager sharedManager].lock unlock];
 }
 
 #pragma mark - - private - -

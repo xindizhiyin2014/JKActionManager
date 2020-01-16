@@ -65,15 +65,17 @@ describe(@"JKActionManager", ^{
                     age4 = age1 + age2 + age3;
                 }
             };
-            action1.completeBlock(action1);
-            action2.completeBlock(action2);
-            action3.completeBlock(action3);
+
             [[expectFutureValue(theValue(age1)) shouldEventually] equal:theValue(1)];
             [[expectFutureValue(theValue(age2)) shouldEventually] equal:theValue(2)];
             [[expectFutureValue(theValue(age3)) shouldEventually] equal:theValue(3)];
-            [[expectFutureValue(theValue(age4)) shouldEventually] equal:theValue(6)];
+           
             [[[JKActionManager sharedManager].actions should] haveCountOf:3];
             [[[JKActionManager sharedManager].batchActions should] haveCountOf:1];
+            action1.completeBlock(action1);
+            action2.completeBlock(action2);
+            action3.completeBlock(action3);
+             [[expectFutureValue(theValue(age4)) shouldEventually] equal:theValue(6)];
             [JKActionManager removeAction:batchAction];
             [[[JKActionManager sharedManager].actions should] haveCountOf:0];
             [[[JKActionManager sharedManager].batchActions should] haveCountOf:0];
@@ -108,6 +110,8 @@ describe(@"JKActionManager", ^{
             };
             JKChainAction *chainAction = [JKChainAction initWithArray:@[action1,action2,action3]];
             [chainAction start];
+            [[[JKActionManager sharedManager].chainActions should] haveCountOf:1];
+
             chainAction.completeBlock = ^(__kindof JKChainAction * _Nonnull chainAction, __kindof JKBaseAction * _Nullable failedAction) {
                 if(!failedAction){
                     for(__kindof JKSingleAction *singleAction in chainAction.actions){
@@ -121,9 +125,7 @@ describe(@"JKActionManager", ^{
             [[expectFutureValue(theValue(age2)) shouldEventually] equal:theValue(2)];
             [[expectFutureValue(theValue(age3)) shouldEventually] equal:theValue(3)];
             [[expectFutureValue(theValue(age4)) shouldEventually] equal:theValue(10)];
-            [[[JKActionManager sharedManager].actions should] haveCountOf:3];
-            [[[JKActionManager sharedManager].chainActions should] haveCountOf:1];
-            [JKActionManager removeAction:chainAction];
+
             [[[JKActionManager sharedManager].actions should] haveCountOf:0];
             [[[JKActionManager sharedManager].batchActions should] haveCountOf:0];
         });
@@ -182,6 +184,7 @@ describe(@"JKActionManager", ^{
             
             JKChainAction *chainAction = [JKChainAction initWithArray:@[action1,action2,action3,batchAction]];
             [chainAction start];
+             [[[JKActionManager sharedManager].chainActions should] haveCountOf:1];
             chainAction.completeBlock = ^(__kindof JKChainAction * _Nonnull chainAction, __kindof JKBaseAction * _Nullable failedAction) {
                 if(!failedAction){
                     for(__kindof JKBaseAction *singleAction in chainAction.actions){
@@ -195,10 +198,7 @@ describe(@"JKActionManager", ^{
             [[expectFutureValue(theValue(age2)) shouldEventually] equal:theValue(2)];
             [[expectFutureValue(theValue(age3)) shouldEventually] equal:theValue(3)];
             [[expectFutureValue(theValue(age4)) shouldEventually] equal:theValue(20)];
-            [[[JKActionManager sharedManager].actions should] haveCountOf:6];
-            [[[JKActionManager sharedManager].chainActions should] haveCountOf:1];
-            [[[JKActionManager sharedManager].batchActions should] haveCountOf:1];
-            [JKActionManager removeAction:chainAction];
+            
             [[[JKActionManager sharedManager].actions should] haveCountOf:0];
             [[[JKActionManager sharedManager].batchActions should] haveCountOf:0];
         });
@@ -262,6 +262,10 @@ describe(@"JKActionManager", ^{
             
             JKBatchAction *batchAction = [JKBatchAction initWithArray:@[action4,action5,action6,chainAction]];
             [batchAction start];
+            
+            [[[JKActionManager sharedManager].chainActions should] haveCountOf:1];
+            [[[JKActionManager sharedManager].batchActions should] haveCountOf:1];
+            
             batchAction.completeBlock = ^(__kindof JKBatchAction * _Nonnull batchAction, __kindof JKBaseAction * _Nullable failedAction) {
                 if(!failedAction){
                     
@@ -277,9 +281,7 @@ describe(@"JKActionManager", ^{
             [[expectFutureValue(theValue(age3)) shouldEventually] equal:theValue(3)];
             [[expectFutureValue(theValue(age4)) shouldEventually] equal:theValue(10)];
             [[expectFutureValue(theValue(age5)) shouldEventually] equal:theValue(20)];
-            [[[JKActionManager sharedManager].actions should] haveCountOf:6];
-            [[[JKActionManager sharedManager].chainActions should] haveCountOf:1];
-            [[[JKActionManager sharedManager].batchActions should] haveCountOf:1];
+           
             [JKActionManager removeAction:batchAction];
             [[[JKActionManager sharedManager].actions should] haveCountOf:0];
             [[[JKActionManager sharedManager].batchActions should] haveCountOf:0];
